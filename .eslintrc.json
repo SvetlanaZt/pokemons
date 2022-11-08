@@ -37,17 +37,5 @@
             "single",
             "backtick"
         ]
-        // "quotes": [
-        //     2,
-        //     "single",
-        //     {
-        //         "avoidEscape": true,
-        //         "allowTemplateLiterals": true
-        //     }
-        // ]
-        // "eol-last": [
-        //     "warn",
-        //     "never"
-        // ]
     }
 }
