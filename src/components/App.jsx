@@ -7,23 +7,24 @@ import { useState, useEffect } from 'react';
 
 export const App = () => {
   const [allPokemons, setAllPokemons] = useState([]);
-  // const [nextPage, setNextPage] = useState('');
-  // const [prevPage, setPrevPage] = useState('');
-  const [selectNumberRender, setSelectNumberRender] = useState(20);
+  const [pokeUrl, setPokeUrl] = useState('https://pokeapi.co/api/v2/pokemon');
+  const [nextPage, setNextPage] = useState('');
+  const [prevPage, setPrevPage] = useState('');
+  const [selectNumberRender, setSelectNumberRender] = useState(10);
   const [filter, setFilter] = useState('');
   const [dataFilter, setDataFilter] = useState([]);
 
   const getAllPokemons = async (number) => {
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${number}`);
+    const res = await fetch(`${pokeUrl}?limit=${number}`);
     const data = await res.json();
     console.log(data);
 
-    // setNextPage(data.next);
-    // setPrevPage(data.previous);
+    setNextPage(data.next);
+    setPrevPage(data.previous);
 
     function createPokemonObject (results) {
       results.map(async (pokemon) => {
-        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`);
+        const res = await fetch(`${pokeUrl}/${pokemon.name}`);
         const data = await res.json();
         setAllPokemons(prevState => [...prevState, data]);
       });
@@ -32,7 +33,8 @@ export const App = () => {
   };
   useEffect(() => {
     getAllPokemons(selectNumberRender);
-  }, [selectNumberRender]);
+    setAllPokemons([]);
+  }, [selectNumberRender, pokeUrl]);
 
   useEffect(() => {
     setDataFilter(allPokemons.filter(item => item.name.toLowerCase().includes(filter.toLowerCase())));
@@ -44,6 +46,13 @@ export const App = () => {
   const onClick = evt => {
     setSelectNumberRender(evt);
   };
+  const goToNext = () => {
+    setPokeUrl(nextPage);
+  };
+  const goToPrev = () => {
+    setPokeUrl(prevPage);
+  };
+
   return (
     <>
     <header>
@@ -53,7 +62,7 @@ export const App = () => {
     </header>
     <main>
         <Pokemons pokemons={dataFilter} />
-        <Buttons/>
+        <Buttons goToNext={goToNext} goToPrev={goToPrev} />
       </main>
       </>
   );
