@@ -11,7 +11,15 @@ export const StyledButton = styled.button`
     margin-right: 20px;
     font-size: 16px;
      &:hover {
-      background-color: #4141ca;
+    background-color: #4141ca;
+    }
+    @media screen and (min-width: 768px) {
+    width: 150px;
+    height: 75px;
+    },
+    @media screen and (min-width: 1200px) {
+    width: 200px;
+    height: 100px;
     }
 `;
 export const StyledDiv = styled.div`

@@ -13,4 +13,8 @@ export const StyledInput = styled.input`
   border: 1px solid #bdbdbd;
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  @media screen and (min-width: 768px) {
+    width: 340px;
+    height: 40px;
+    }
 `;

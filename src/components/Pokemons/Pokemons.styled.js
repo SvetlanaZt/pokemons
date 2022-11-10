@@ -30,6 +30,12 @@ export const StyledLi = styled.li`
    @media screen and (min-width: 768px) {
     width: calc((100% - 2 * 30px) / 2);
     margin-right: 30px;
+    :hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  transition: transform 250ms
+}
     :nth-child(2n) {
   margin-right: 0;
 }};
@@ -47,6 +53,7 @@ export const StyledImg = styled.img`
     margin: 0 auto;
     margin-top: 15px;
     margin-bottom: 25px;
+    height: 150px;
 `;
 export const StyledName = styled.p`
     display: flex;
