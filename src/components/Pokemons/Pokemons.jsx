@@ -1,17 +1,31 @@
 import PropTypes from 'prop-types';
+import { StyledUl, StyledLi, StyledName, StyledImg, StyledTypeStats } from './Pokemons.styled'
 
 export default function Pokemons ({ pokemons }) {
-  return (<ul>
+  return (<StyledUl>
         {pokemons.map(item => (
-          <li key={item.id}>
-            <p>{item.name}</p>
-            <img src={item.sprites.other.dream_world.front_default} alt={item.name}></img>
-            <p>Type: {item.types[0].type.name}</p>
-          </li>
+          <StyledLi key={item.id}>
+            <StyledName>{item.name}</StyledName>
+            <StyledImg src={item.sprites.other.dream_world.front_default} alt={item.name}></StyledImg>
+            <StyledTypeStats>Type: {item.types[0].type.name}</StyledTypeStats>
+            <StyledTypeStats>Stats: {item.stats[0].base_stat}</StyledTypeStats>
+          </StyledLi>
         ))}
-        </ul>);
+        </StyledUl>);
 }
 
 Pokemons.propTypes = {
-  pokemons: PropTypes.array.isRequired,
+  pokemons: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    sprites: PropTypes.objectOf(PropTypes.objectOf).isRequired,
+    types: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+      })),
+    stats: PropTypes.arrayOf(
+      PropTypes.shape({
+        base_stat: PropTypes.number,
+      })),
+  }).isRequired),
 };

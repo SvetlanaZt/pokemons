@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
+import { StyledInput } from './FilterName.styled';
 
 export default function FilterName ({ value, onChange }) {
   return (<>
-    <h2>Search name</h2>
-    <input type="text" value={value} onChange={onChange} placeholder="Search"></input>;
+    <StyledInput type="text" value={value} onChange={onChange} placeholder="Search name"></StyledInput>
   </>
   );
 }

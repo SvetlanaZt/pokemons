@@ -3,7 +3,9 @@ import Pokemons from './Pokemons/Pokemons';
 import FilterName from './FilterName/FilterName';
 import FormControl from './FormControl/FormControl';
 import Buttons from './Buttons/Buttons';
+import FilterTypes from './FilterTypes/FilterTypes';
 import { useState, useEffect } from 'react';
+import { StyledDiv, StyledHeader } from './App.styled';
 
 export const App = () => {
   const [allPokemons, setAllPokemons] = useState([]);
@@ -11,7 +13,8 @@ export const App = () => {
   const [nextPage, setNextPage] = useState('');
   const [prevPage, setPrevPage] = useState('');
   const [selectNumberRender, setSelectNumberRender] = useState(10);
-  const [filter, setFilter] = useState('');
+  const [filterName, setFilterName] = useState('');
+  const [filterType, setFilterType] = useState('all');
   const [dataFilter, setDataFilter] = useState([]);
 
   const getAllPokemons = async (number) => {
@@ -24,7 +27,7 @@ export const App = () => {
 
     function createPokemonObject (results) {
       results.map(async (pokemon) => {
-        const res = await fetch(`${pokeUrl}/${pokemon.name}`);
+        const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`);
         const data = await res.json();
         setAllPokemons(prevState => [...prevState, data]);
       });
@@ -36,15 +39,22 @@ export const App = () => {
     setAllPokemons([]);
   }, [selectNumberRender, pokeUrl]);
 
+  const filterTypes = filterType === 'all' ? allPokemons : allPokemons.filter(item => item.types[0].type.name === filterType);
+  const filterNameTag = filterTypes.filter(item => item.name.toLowerCase().includes(filterName.toLowerCase()));
+
   useEffect(() => {
-    setDataFilter(allPokemons.filter(item => item.name.toLowerCase().includes(filter.toLowerCase())));
-  }, [filter, allPokemons]);
+    setDataFilter(filterNameTag);
+  }, [filterName, allPokemons, filterType]);
 
   const changeInput = evt => {
-    setFilter(evt.currentTarget.value.trim());
+    setFilterName(evt.currentTarget.value.trim());
   };
-  const onClick = evt => {
+  const onClickPagination = evt => {
     setSelectNumberRender(evt);
+  };
+  const onClickType = (evt) => {
+    console.log(evt);
+    setFilterType(evt);
   };
   const goToNext = () => {
     setPokeUrl(nextPage);
@@ -52,14 +62,16 @@ export const App = () => {
   const goToPrev = () => {
     setPokeUrl(prevPage);
   };
-
   return (
     <>
-    <header>
+    <StyledHeader>
         <HeaderImg />
-        <FilterName value={filter} onChange={changeInput} />
-        <FormControl onClick={onClick}/>
-    </header>
+        <FilterName value={filterName} onChange={changeInput} />
+        <StyledDiv>
+        <FormControl onClick={onClickPagination} />
+        <FilterTypes onClick={onClickType} />
+        </StyledDiv>
+    </StyledHeader>
     <main>
         <Pokemons pokemons={dataFilter} />
         <Buttons goToNext={goToNext} goToPrev={goToPrev} />
