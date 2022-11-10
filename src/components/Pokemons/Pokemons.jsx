@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import { StyledUl, StyledLi, StyledName, StyledImg, StyledTypeStats } from './Pokemons.styled'
+import { StyledUl, StyledLi, StyledName, StyledImg, StyledTypeStats } from './Pokemons.styled';
 
 export default function Pokemons ({ pokemons }) {
   return (<StyledUl>
         {pokemons.map(item => (
-          <StyledLi key={item.id}>
+          <StyledLi item={item.types[0].type.name} key={item.id}>
             <StyledName>{item.name}</StyledName>
             <StyledImg src={item.sprites.other.dream_world.front_default} alt={item.name}></StyledImg>
             <StyledTypeStats>Type: {item.types[0].type.name}</StyledTypeStats>
