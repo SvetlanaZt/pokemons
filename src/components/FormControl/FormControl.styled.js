@@ -23,7 +23,7 @@ export const StyledSelect = styled.select`
     width: 50px;
     height: 30px;
     @media screen and (min-width: 768px) {
-    width: 80px;
+    width: 90px;
     height: 50px;
     font-size: 20px;
     } @media screen and (min-width: 1200px) {

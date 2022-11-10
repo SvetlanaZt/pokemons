@@ -3,8 +3,8 @@ import { StyledDiv, StyledSelect, StyledP } from '../FormControl/FormControl.sty
 
 export default function FilterTypes ({ onClick }) {
   return (
-        <StyledDiv><StyledP>Choose Type</StyledP>
-      <StyledSelect name="select" onClick={(evt) => onClick(evt.target.value)}>
+  <StyledDiv><StyledP>Choose Type</StyledP>
+  <StyledSelect name="select" onClick={(evt) => onClick(evt.target.value)}>
   <option value="all">all</option>
   <option value="water">water</option>
   <option value="grass">grass</option>

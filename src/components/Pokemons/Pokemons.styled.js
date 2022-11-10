@@ -37,7 +37,7 @@ export const StyledLi = styled.li`
   transition: transform 250ms
 }
     :nth-child(2n) {
-  margin-right: 0;
+    margin-right: 0;
 }};
  @media screen and (min-width: 1200px) {
     width: calc((100% - 100px) / 3);

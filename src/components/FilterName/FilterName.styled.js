@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledInput = styled.input`
-    display: flex;
-    margin: 0 auto;
+  display: flex;
+  margin: 0 auto;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;

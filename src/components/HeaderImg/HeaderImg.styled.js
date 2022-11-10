@@ -28,8 +28,8 @@ export const StyledDiv = styled.div`
 `;
 export const StyledImg = styled.img`
     margin: 0 auto;
-display: flex;
-@media screen and (min-width: 768px) {
+    display: flex;
+    @media screen and (min-width: 768px) {
     margin: 0;
     height: 90px;
     margin-left: 20px

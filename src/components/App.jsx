@@ -20,7 +20,6 @@ export const App = () => {
   const getAllPokemons = async (number) => {
     const res = await fetch(`${pokeUrl}?limit=${number}`);
     const data = await res.json();
-    console.log(data);
 
     setNextPage(data.next);
     setPrevPage(data.previous);
@@ -53,7 +52,6 @@ export const App = () => {
     setSelectNumberRender(evt);
   };
   const onClickType = (evt) => {
-    console.log(evt);
     setFilterType(evt);
   };
   const goToNext = () => {
@@ -74,7 +72,7 @@ export const App = () => {
     </StyledHeader>
     <main>
         <Pokemons pokemons={dataFilter} />
-        <Buttons goToNext={goToNext} goToPrev={goToPrev} />
+        <Buttons goToNext={goToNext} goToPrev={goToPrev} prevPage={prevPage} />
       </main>
       </>
   );
