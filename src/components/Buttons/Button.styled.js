@@ -26,4 +26,5 @@ export const StyledDiv = styled.div`
     justify-content: center;
     align-items: center;
     display: flex;
+    margin-bottom: 15px;
 `;

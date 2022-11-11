@@ -66,8 +66,8 @@ export const App = () => {
         <HeaderImg />
         <FilterName value={filterName} onChange={changeInput} />
         <StyledDiv>
-        <FormControl onClick={onClickPagination} />
-        <FilterTypes onClick={onClickType} />
+        <FormControl onChange={onClickPagination} />
+        <FilterTypes onChange={onClickType} />
         </StyledDiv>
     </StyledHeader>
     <main>

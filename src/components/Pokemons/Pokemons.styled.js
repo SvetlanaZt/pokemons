@@ -34,7 +34,7 @@ export const StyledLi = styled.li`
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
   transform: scale(1.1);
-  transition: transform 250ms
+  transition: transform 300ms
 }
     :nth-child(2n) {
     margin-right: 0;
